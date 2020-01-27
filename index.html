@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MVVM</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.common-material.min.css" />
+	<link rel="stylesheet" href="https://kendo.cdn.telerik.com/2019.2.619/styles/kendo.material.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700,900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	
+	<!-- JS -->
+	<script src="https://kendo.cdn.telerik.com/2019.2.619/js/jquery.min.js"></script>
+	<script src="https://kendo.cdn.telerik.com/2019.2.619/js/kendo.all.min.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+
+	<div id="kendoGrid" class="k-content">
+		
+		<form method="POST" action="">
+			<div class="form-header">
+				<p>1. Registrierung</p>
+			</div>
+
+			<div class="form-content">
+				<ul class="fieldlist">
+					<li class="required">
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: firstName, events: {keyup: fnameValidate}" type="text" name="firstName" id="firstName icon-left" placeholder="First Name" validationMessage="First Name is required." required>
+		                    <i class="k-icon k-i-pencil"></i>
+		                </span>
+					</li>
+					<li class="required">
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: lastName, events: {keyup: lnameValidate}" type="text" name="lastName" id="lastName icon-left" placeholder="Last Name" validationMessage="Last Name is required." required>
+		                    <i class="k-icon k-i-pencil"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: str1" type="text" name="str1" id="str1 icon-left" placeholder="Street Address">
+		                    <i class="k-icon k-i-marker-pin"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: str2" type="text" name="str2" id="str2 icon-left" placeholder="Address Line 2">
+		                    <i class="k-icon k-i-marker-pin"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 48%; margin-right: 18px;" >
+		                    <input data-bind="value: city" type="text" name="city" id="city icon-left" placeholder="City">
+		                    <i class="k-icon k-i-ungroup"></i>
+		                </span>
+		                <span class="k-textbox k-space-left" style="width: 48%;" >
+		                    <input data-bind="value: state" type="text" name="state" id="state icon-left" placeholder="State / Province / Region">
+		                    <i class="k-icon k-i-ungroup"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 48%; margin-right: 18px;" >
+		                    <input data-bind="value: zip" type="number" name="zip" id="zip icon-left" placeholder="Postal / Zip Code" min="0">
+		                    <i class="k-icon k-i-list-numbered"></i>
+		                </span>
+		                <span class="k-textbox k-space-left" style="width: 48%;" >
+		                    <select data-role="dropdownlist" data-bind="source: countries, value: country" data-text-field="name" data-value-field="value" style="width: 100%; background: #fff;"></select>
+		                    <i class="k-icon k-i-rows"></i>
+		                </span>
+					</li>
+					<li class="required">
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input type="text" name="userName" id="userName icon-left" placeholder="Username" pattern="[A-Za-z0-9].{8,}$" validationMessage="Username is required, enter at least 8 characters." data-bind="events: {keyup: userValidate}" required>
+		                    <i class="k-icon k-i-user"></i>
+		                </span>
+					</li>
+					<li class="required required_password">
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input type="password" name="passWord" id="passWord icon-left" placeholder="Password" 
+		                    pattern="(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+               				validationMessage="Password is required." data-bind="events: {keyup: passValidate}" required>
+		                    <i class="k-icon k-i-password"></i>
+		                </span>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="form-footer">
+				<button id="submitButton" class="k-primary" data-role="button"
+                    data-bind="visible: isVisible, enabled: isEnabled, events: { click: register }"
+                    style="width: 120px"
+        		>Submit</button>
+			</div>
+		</form>
+
+	</div>
+
+	<div id="signin" style="display: none;" class="k-content">
+		<form method="POST" action="">
+			<div class="form-header form-header-signin">
+				<p>2. Anmeldung</p>
+			</div>
+
+			<div class="form-content">
+				<ul class="fieldlist">
+					<li class="required">
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input type="text" name="userName" id="userNameSignIn icon-left" placeholder="Username" validationMessage="Username is required." required>
+		                    <i class="k-icon k-i-user"></i>
+		                </span>
+					</li>
+					<li class="required required_password">
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input type="password" name="passWord" id="passWordSignIn icon-left" placeholder="Password" 
+               				validationMessage="Password is required." required>
+		                    <i class="k-icon k-i-password"></i>
+		                </span>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="form-footer">
+				<button id="submitButtonSignIn" class="k-primary" data-role="button" type="submit"
+                    data-bind="visible: isVisible, enabled: isEnabled, events: { click: signin }"
+                    style="width: 120px"
+        		>Sign In</button>
+        		<button id="submitButtonSignUp" class="k-primary" data-role="button" type="button" 
+                    data-bind="visible: isVisible, enabled: isEnabled" onclick="location.reload();" 
+                    style="width: 120px"
+        		>Sign Up</button>
+			</div>
+		</form>
+	</div>
+
+	<div id="user" style="display: none;" class="k-content">
+		<form method="POST" action="">
+			<div class="form-header form-header-user">
+				<p>Kundenkonto</p>
+			</div>
+			
+			<div class="form-content">
+				<ul class="fieldlist">
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: firstName" type="text" name="firstName" id="firstNameUser icon-left">
+		                    <i class="k-icon k-i-pencil"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: lastName" type="text" name="lastName" id="lastNameUser icon-left">
+		                    <i class="k-icon k-i-pencil"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: str1" type="text" name="str1" id="str1User icon-left" placeholder="Street Address">
+		                    <i class="k-icon k-i-marker-pin"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: str2" type="text" name="str2" id="str2User icon-left" placeholder="Address Line 2">
+		                    <i class="k-icon k-i-marker-pin"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 48%; margin-right: 18px;" >
+		                    <input data-bind="value: city" type="text" name="city" id="cityUser icon-left" placeholder="City">
+		                    <i class="k-icon k-i-ungroup"></i>
+		                </span>
+		                <span class="k-textbox k-space-left" style="width: 48%;" >
+		                    <input data-bind="value: state" type="text" name="state" id="stateUser icon-left" placeholder="State / Province / Region">
+		                    <i class="k-icon k-i-ungroup"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 48%; margin-right: 18px;" >
+		                    <input data-bind="value: zip" type="number" name="zip" id="zipUser icon-left" placeholder="Postal / Zip Code" min="0">
+		                    <i class="k-icon k-i-list-numbered"></i>
+		                </span>
+		                <span class="k-textbox k-space-left" style="width: 48%;" >
+		                    <select data-role="dropdownlist" data-bind="source: countries, value: country" data-text-field="name" data-value-field="value" style="width: 100%; background: #fff;"></select>
+		                    <i class="k-icon k-i-rows"></i>
+		                </span>
+					</li>
+					<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: userName" type="text" name="userName" id="userNameUser icon-left" disabled>
+		                    <i class="k-icon k-i-user"></i>
+		                </span>
+					</li>
+			<!-- 		<li>
+						<span class="k-textbox k-space-left" style="width: 100%;" >
+		                    <input data-bind="value: passWord" type="password" name="passWord" id="passWordUser icon-left"></i>
+		                </span>
+					</li> -->
+				</ul>
+			</div>
+			
+			<div class="form-footer">
+				<button id="submitButtonUser" class="k-primary" data-role="button" type="button" 
+                    data-bind="visible: isVisible, enabled: isEnabled, events: { click: userInfo }"
+                    style="width: 120px"
+        		>OK</button>
+				<button id="submitButtonUserSave" class="k-primary" data-role="button" type="button" 
+		            data-bind="visible: isVisible, enabled: isEnabled, events: { click: userSave }"
+		            style="width: 120px"
+				>Save</button>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+</html>

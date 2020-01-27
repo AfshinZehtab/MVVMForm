@@ -1,0 +1,150 @@
+*
+{
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+}
+
+.k-content
+{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.k-content form
+{
+	padding: 40px;
+    width: 600px;
+    margin: 0 auto;
+    border: 1px solid #000;
+    position: relative;
+}
+
+.k-content form input::placeholder
+{
+	color: #ccc;
+}
+
+.k-content form .required .k-invalid-msg
+{
+    color: #f14545;
+    background: #ffffff;
+    border: 0;
+    text-align: left;
+}
+
+.passContain h3,
+.passContain p
+{
+	font-weight: 400;
+}
+
+.valid 
+{
+    color: #46de2c;
+}
+
+.invalid 
+{
+    color: #f14e45;
+}
+
+.k-content form .k-textbox
+{
+	background: #fff;
+}
+
+.k-content form .form-header
+{
+	background: #3f51b5;
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.k-content form .form-header p
+{
+	font-weight: 400;
+	font-size: 24px;
+    margin-left: 40px;
+}
+
+.k-content form .form-content
+{
+	margin-top: 60px;
+    margin-bottom: 65px;
+}
+
+.k-content ul
+{
+	list-style: none;
+	padding: 0;
+}
+
+.k-content ul li
+{
+	margin-bottom: 15px;
+}
+
+.k-content .k-icon 
+{
+    left: 10px;
+}
+
+.k-content form .k-dropdown-wrap.k-state-default
+{
+    border: none;
+    background: #fff;
+}
+
+.k-content .form-footer
+{
+	position: absolute;
+    bottom: 20px;
+    right: 0;
+    color: #fff;
+    width: 100%;
+    text-align: right;
+    border-top: 1px solid #000;
+}
+
+.k-content .form-footer #submitButtonSignIn,
+.k-content .form-footer #submitButtonSignUp,
+.k-content .form-footer #submitButtonUser,
+.k-content .form-footer #submitButtonUserSave,
+.k-content .form-footer #submitButton
+{
+	margin-right: 20px;
+    margin-top: 15px;
+}
+
+#signin .form-header-signin
+{
+    background: #3fb56a;
+}
+
+#signin .k-primary
+{
+    border-color: #3fb56a;
+    background-color: #3fb56a;
+}
+
+#signin .form-footer #submitButtonSignUp
+{
+    border-color: #3f51b5;
+    background-color: #3f51b5;
+}
+
+#user .form-header-user
+{
+    background: #3fb59b;
+}
+
+#user .k-primary
+{
+    border-color: #3fb59b;
+    background-color: #3fb59b;
+}
